@@ -1,0 +1,9 @@
+---
+- name: Add the user {{ user_name }} with group wheel
+  user:
+    name: "{{ user_name }}"
+    shell: /bin/bash
+    group: wheel
+    password: "{{ user_password }}"
+
+# TODO: prepare any provided SSH keys (or generate them) for the user

@@ -1,0 +1,4 @@
+---
+- name: Configure mirrorlist ranking
+  import_role:
+      name: stuvusit.pacman-reflector

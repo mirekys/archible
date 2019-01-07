@@ -1,0 +1,15 @@
+---
+- name: Check System Hostname
+  command: hostname
+  ignore_errors: true
+  register: host_current
+
+- name: Set System Hostname to {{ host_name }}
+  command: hostnamectl set-hostname {{ host_name }}
+  when: host_current.stdout != host_name
+
+- name: Set /etc/hosts entry for host {{ host_name }}
+  lineinfile:
+    path: /etc/hosts
+    line: 127.0.0.1       {{ host_name }}.localdomain   {{ host_name }}
+    create: no

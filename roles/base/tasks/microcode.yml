@@ -1,0 +1,14 @@
+---
+- name: install intel microcode
+  pacman:
+    name: intel-ucode
+    state: latest
+  when: ansible_processor[1] == 'GenuineIntel'
+  notify: regenerate grub config
+
+- name: install amd microcode
+  pacman:
+    name: amd-ucode
+    state: latest
+  when: ansible_processor[1] == 'AuthenticAMD'
+  notify: regenerate grub config

@@ -1,0 +1,5 @@
+---
+- name: Install arch-audit for package vulnerability audit
+  pacman:
+    name: arch-audit
+    state: latest

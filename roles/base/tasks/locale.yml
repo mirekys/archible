@@ -1,0 +1,12 @@
+---
+- name: Generate locales
+  locale_gen:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ locale_locales }}'
+
+- name: Set LANG to {{ locale_primary }}
+  lineinfile:
+    path: /etc/locale.conf
+    line: LANG={{ locale_primary }}
+    create: yes

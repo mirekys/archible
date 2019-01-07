@@ -1,0 +1,12 @@
+---
+- name: Install cronie
+  pacman:
+    name: cronie
+    state: latest
+
+- name: Enable & start cronie service
+  service:
+    name: cronie
+    state: started
+    enabled: yes
+

@@ -1,0 +1,24 @@
+---
+- name: Configure Time & Date
+  include_tasks: datetime.yml
+
+- name: Configure System Localization
+  include_tasks: locale.yml
+
+- name: Configure System Hostname
+  include_tasks: hostname.yml
+
+- name: Configure PacMan Mirrorlists
+  include_tasks: mirrors.yml
+
+- name: Configure CPU microcode updates
+  include_tasks: microcode.yml
+
+- name: Install & Configure AUR Package Helper
+  include_tasks: aurhelper.yml
+
+- name: Install Cron system
+  include_tasks: cron.yaml
+
+- name: Create users
+  include_tasks: users.yml

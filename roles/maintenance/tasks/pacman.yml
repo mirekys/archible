@@ -1,0 +1,15 @@
+---
+- name: Install Pacman maintenance tools
+  pacman:
+    name: pacman-contrib
+    state: latest
+
+- name: Enable periodic package cache cleaning
+  service:
+    name: paccache.timer
+    state: started
+    enabled: yes
+
+# TODO: Integrate checkupdates with system notifications
+# TODO: Check for orphans and dropped packages
+# TODO: Deal with .pacnew configuration files

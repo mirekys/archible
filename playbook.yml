@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  name: Base system setup
+  become: yes
+  remote_user: root
+  vars_prompt:
+  - name: "user_password"
+    prompt: "password for your new user"
+    private: yes
+    encrypt: "sha512_crypt"
+    confirm: yes
+    salt_size: 7
+  tasks:
+  - name: Read user preferences
+    include_vars:
+      file: preferences.yml
+  - import_role:
+      name: base
+
+- hosts: localhost
+  name: Setup System Security
+  become: yes
+  remote_user: root
+  tasks:
+  - import_role:
+      name: security
+
+- hosts: localhost
+  name: System Maintenance Tasks
+  become: yes
+  remote_user: root
+  tasks:
+  - import_role:
+      name: maintenance
+
+- hosts: localhost
+  name: Install & Configure Desktop environment
+  become: yes
+  remote_user: root
+  tasks:
+  - name: Read user preferences
+    include_vars:
+      file: preferences.yml
+#  - import_role:  TODO
+#      name: desktop
